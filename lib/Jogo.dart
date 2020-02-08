@@ -11,13 +11,14 @@ class Jogo extends StatefulWidget {
 /// Classe que implementa o estado e o layout do aplicativo
 class _JogoState extends State<Jogo> {
   var _imagemApp = AssetImage("images/padrao.png");
+  var _tituloApp = "JokenPo";
   var _resultado = "Escolha uma opção abaixo:";
   var _msgEmpate = "Parece que tivemos um empate.";
   var _msgVitoria = "Você ganhou! Parabéns!";
   var _msgDerrota = "Você perdeu... Tente novamente.";
 
   /// Classe que implementa a regra do jogo JokenPo
-  void _jogar(OpcoesJogo escolha) {
+  void _jogar(OpcoesJogo escolhaUsuario) {
     var _indexEscolhaApp = Random().nextInt(OpcoesJogo.values.length);
     var _escolhaApp = OpcoesJogo.values[_indexEscolhaApp];
     // Atualiza o estado das imagens e dos textos
@@ -25,9 +26,9 @@ class _JogoState extends State<Jogo> {
       switch (_escolhaApp) {
         case OpcoesJogo.pedra:
           _imagemApp = AssetImage("images/pedra.png");
-          if (escolha.index == OpcoesJogo.pedra.index) {
+          if (escolhaUsuario.index == OpcoesJogo.pedra.index) {
             _resultado = _msgEmpate;
-          } else if (escolha.index == OpcoesJogo.papel.index) {
+          } else if (escolhaUsuario.index == OpcoesJogo.papel.index) {
             _resultado = _msgVitoria;
           } else {
             _resultado = _msgDerrota;
@@ -35,9 +36,9 @@ class _JogoState extends State<Jogo> {
           break;
         case OpcoesJogo.papel:
           _imagemApp = AssetImage("images/papel.png");
-          if (escolha.index == OpcoesJogo.papel.index) {
+          if (escolhaUsuario.index == OpcoesJogo.papel.index) {
             _resultado = _msgEmpate;
-          } else if (escolha.index == OpcoesJogo.tesoura.index) {
+          } else if (escolhaUsuario.index == OpcoesJogo.tesoura.index) {
             _resultado = _msgVitoria;
           } else {
             _resultado = _msgDerrota;
@@ -45,9 +46,9 @@ class _JogoState extends State<Jogo> {
           break;
         case OpcoesJogo.tesoura:
           _imagemApp = AssetImage("images/tesoura.png");
-          if (escolha.index == OpcoesJogo.tesoura.index) {
+          if (escolhaUsuario.index == OpcoesJogo.tesoura.index) {
             _resultado = _msgEmpate;
-          } else if (escolha.index == OpcoesJogo.pedra.index) {
+          } else if (escolhaUsuario.index == OpcoesJogo.pedra.index) {
             _resultado = _msgVitoria;
           } else {
             _resultado = _msgDerrota;
@@ -62,7 +63,7 @@ class _JogoState extends State<Jogo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("JokenPo"),
+        title: Text(_tituloApp),
       ),
       body: Container(
         decoration: BoxDecoration(
