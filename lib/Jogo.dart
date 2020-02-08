@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-
-enum OpcoesJogo {
-  pedra,
-  papel,
-  tesoura,
-}
+import 'package:flutter_jokenpo/util/enums.dart';
 
 class Jogo extends StatefulWidget {
   @override
