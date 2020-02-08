@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-enum OpcoesJogo { pedra, papel, tesoura }
+enum OpcoesJogo {
+  pedra,
+  papel,
+  tesoura,
+}
 
 class Jogo extends StatefulWidget {
   @override
@@ -16,6 +20,7 @@ class _JogoState extends State<Jogo> {
   var _msgEmpate = "Parece que tivemos um empate.";
   var _msgVitoria = "Você ganhou! Parabéns!";
   var _msgDerrota = "Você perdeu... Tente novamente.";
+  var _selectedIndex = 0;
 
   /// Classe que implementa a regra do jogo JokenPo
   void _jogar(OpcoesJogo escolhaUsuario) {
@@ -58,16 +63,24 @@ class _JogoState extends State<Jogo> {
     });
   }
 
-  // Definicao do layout do aplicativo
+  /// Atualiza o index do item selecionado no bottomNavigationBar
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  /// Definicao do layout do aplicativo
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: Text(_tituloApp),
       ),
       body: Container(
         decoration: BoxDecoration(
-          border: Border.all(width: 3, color: Colors.lightBlueAccent),
+          border: Border.all(width: 3, color: Colors.lightBlue),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,6 +125,23 @@ class _JogoState extends State<Jogo> {
             )
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.blue,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Principal'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            title: Text('Placar'),
+          ),
+        ],
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.deepPurple,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
