@@ -16,6 +16,9 @@ class _JogoState extends State<Jogo> {
   var _msgVitoria = "Você ganhou! Parabéns!";
   var _msgDerrota = "Você perdeu... Tente novamente.";
   var _selectedIndex = 0;
+  var _resultUsuario = 0;
+  var _resultApp = 0;
+  var _empates = 0;
 
   /// Classe que implementa a regra do jogo JokenPo
   void _jogar(OpcoesJogo escolhaUsuario) {
@@ -28,30 +31,39 @@ class _JogoState extends State<Jogo> {
           _imagemApp = AssetImage("images/pedra.png");
           if (escolhaUsuario.index == OpcoesJogo.pedra.index) {
             _resultado = _msgEmpate;
+            ++_empates;
           } else if (escolhaUsuario.index == OpcoesJogo.papel.index) {
             _resultado = _msgVitoria;
+            ++_resultUsuario;
           } else {
             _resultado = _msgDerrota;
+            ++_resultApp;
           }
           break;
         case OpcoesJogo.papel:
           _imagemApp = AssetImage("images/papel.png");
           if (escolhaUsuario.index == OpcoesJogo.papel.index) {
             _resultado = _msgEmpate;
+            ++_empates;
           } else if (escolhaUsuario.index == OpcoesJogo.tesoura.index) {
             _resultado = _msgVitoria;
+            ++_resultUsuario;
           } else {
             _resultado = _msgDerrota;
+            ++_resultApp;
           }
           break;
         case OpcoesJogo.tesoura:
           _imagemApp = AssetImage("images/tesoura.png");
           if (escolhaUsuario.index == OpcoesJogo.tesoura.index) {
             _resultado = _msgEmpate;
+            ++_empates;
           } else if (escolhaUsuario.index == OpcoesJogo.pedra.index) {
             _resultado = _msgVitoria;
+            ++_resultUsuario;
           } else {
             _resultado = _msgDerrota;
+            ++_resultApp;
           }
           break;
       }
@@ -82,7 +94,7 @@ class _JogoState extends State<Jogo> {
           children: <Widget>[
             // Texto - Escolha do App
             Padding(
-              padding: EdgeInsets.only(top: 32, bottom: 16),
+              padding: EdgeInsets.only(top: 32, bottom: 10),
               child: Text(
                 "Escolha do App:",
                 textAlign: TextAlign.center,
@@ -93,7 +105,7 @@ class _JogoState extends State<Jogo> {
             Image(image: this._imagemApp),
             // Texto - Escolha do usuario
             Padding(
-              padding: EdgeInsets.only(top: 32, bottom: 16),
+              padding: EdgeInsets.only(top: 10, bottom: 16),
               child: Text(
                 _resultado,
                 textAlign: TextAlign.center,
@@ -117,7 +129,55 @@ class _JogoState extends State<Jogo> {
                   child: Image.asset("images/tesoura.png", height: 100),
                 ),
               ],
-            )
+            ),
+            // Placar
+            Padding(
+              padding: EdgeInsets.only(top: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Você  ",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "$_resultUsuario",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                  ),
+                  Text(
+                    "x",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "$_resultApp",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.redAccent),
+                  ),
+                  Text(
+                    " App",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              "Empates: $_empates",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
@@ -129,8 +189,8 @@ class _JogoState extends State<Jogo> {
             title: Text('Principal'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            title: Text('Placar'),
+            icon: Icon(Icons.info),
+            title: Text('Info'),
           ),
         ],
         selectedItemColor: Colors.white,
