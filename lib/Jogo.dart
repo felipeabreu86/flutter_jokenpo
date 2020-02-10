@@ -87,7 +87,7 @@ class _JogoState extends State<Jogo> {
       ),
       body: Container(
         child: SingleChildScrollView(
-          //padding: EdgeInsets.only(top: 16),
+          padding: EdgeInsets.only(top: 5, bottom: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
