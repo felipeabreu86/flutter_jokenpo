@@ -86,99 +86,93 @@ class _JogoState extends State<Jogo> {
         title: Text(_tituloApp),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          border: Border.all(width: 3, color: Colors.lightBlue),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            // Texto - Escolha do App
-            Padding(
-              padding: EdgeInsets.only(top: 32, bottom: 10),
-              child: Text(
-                "Escolha do App:",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        //decoration: BoxDecoration(
+        //  border: Border.all(width: 3, color: Colors.lightBlue),
+        //),
+        child: SingleChildScrollView(
+          //padding: EdgeInsets.only(top: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              // Texto - Escolha do App
+              Padding(
+                padding: EdgeInsets.only(top: 32, bottom: 10),
+                child: Text(
+                  "Escolha do App:",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            // Imagem - Escolha do App
-            Image(image: this._imagemApp),
-            // Texto - Escolha do usuario
-            Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 16),
-              child: Text(
-                _resultado,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              // Imagem - Escolha do App
+              Image(image: this._imagemApp),
+              // Texto - Escolha do usuario
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 16),
+                child: Text(
+                  _resultado,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            // Imagens - Escolha do usuario
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () => _jogar(OpcoesJogo.pedra),
-                  child: Image.asset("images/pedra.png", height: 100),
-                ),
-                GestureDetector(
-                  onTap: () => _jogar(OpcoesJogo.papel),
-                  child: Image.asset("images/papel.png", height: 100),
-                ),
-                GestureDetector(
-                  onTap: () => _jogar(OpcoesJogo.tesoura),
-                  child: Image.asset("images/tesoura.png", height: 100),
-                ),
-              ],
-            ),
-            // Placar
-            Padding(
-              padding: EdgeInsets.only(top: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              // Imagens - Escolha do usuario
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text(
-                    "Você  ",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  GestureDetector(
+                    onTap: () => _jogar(OpcoesJogo.pedra),
+                    child: Image.asset("images/pedra.png", height: 100),
                   ),
-                  Text(
-                    "$_resultUsuario",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
+                  GestureDetector(
+                    onTap: () => _jogar(OpcoesJogo.papel),
+                    child: Image.asset("images/papel.png", height: 100),
                   ),
-                  Text(
-                    "x",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "$_resultApp",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.redAccent),
-                  ),
-                  Text(
-                    " App",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  GestureDetector(
+                    onTap: () => _jogar(OpcoesJogo.tesoura),
+                    child: Image.asset("images/tesoura.png", height: 100),
                   ),
                 ],
               ),
-            ),
-            Text(
-              "Empates: $_empates",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
+              // Placar
+              Padding(
+                padding: EdgeInsets.only(top: 15),
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(text: "Você "),
+                      TextSpan(
+                        text: "$_resultUsuario",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue),
+                      ),
+                      TextSpan(text: " x "),
+                      TextSpan(
+                        text: "$_resultApp",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red),
+                      ),
+                      TextSpan(text: " App"),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ],
+              Text(
+                "Empates: $_empates",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
