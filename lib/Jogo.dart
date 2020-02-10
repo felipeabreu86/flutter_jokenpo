@@ -86,9 +86,6 @@ class _JogoState extends State<Jogo> {
         title: Text(_tituloApp),
       ),
       body: Container(
-        //decoration: BoxDecoration(
-        //  border: Border.all(width: 3, color: Colors.lightBlue),
-        //),
         child: SingleChildScrollView(
           //padding: EdgeInsets.only(top: 16),
           child: Column(
