@@ -31,7 +31,7 @@ Pré-requisitos: Flutter 2.2.3 ([como instalar](https://flutter.dev/docs/get-sta
 git clone https://github.com/felipeabreu86/flutter_jokenpo.git
 
 # entrar na pasta do projeto
-cd frases_do_dia
+cd flutter_jokenpo
 
 # rodar o comando abaixo para obter as dependências do projeto
 flutter pub get
