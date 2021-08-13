@@ -71,94 +71,108 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 0, bottom: 16),
-              child: Text(
-                "Escolha do App:",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Image(image: this.imagemApp),
-            Padding(
-                padding: EdgeInsets.only(top: 32, bottom: 16),
-                child: Text(this.mensagem,
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                  onTap: () => validarJogada("pedra"),
-                  child: Image.asset(
-                    "assets/images/pedra.png",
-                    height: 100,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => validarJogada("papel"),
-                  child: Image.asset(
-                    "assets/images/papel.png",
-                    height: 100,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => validarJogada("tesoura"),
-                  child: Image.asset(
-                    "assets/images/tesoura.png",
-                    height: 100,
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 60),
-              child: Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 5, bottom: 5),
-                    padding: EdgeInsets.only(top: 5, bottom: 5),
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 3, color: Colors.black26),
-                        color: Colors.black12),
-                    child: Row(
+      body: Stack(
+        children: [
+          Center(
+            child: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.all(10),
+                width: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 0, bottom: 0),
+                      child: Text(
+                        "Escolha do App:",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Image(image: this.imagemApp),
+                    Padding(
+                      padding: EdgeInsets.only(top: 32, bottom: 16),
+                      child: Text(
+                        this.mensagem,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          "Você: $vitorias",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue),
+                        GestureDetector(
+                          onTap: () => validarJogada("pedra"),
+                          child: Image.asset(
+                            "assets/images/pedra.png",
+                            height: 100,
+                          ),
                         ),
-                        Text(
-                          "App: $derrotas",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red),
+                        GestureDetector(
+                          onTap: () => validarJogada("papel"),
+                          child: Image.asset(
+                            "assets/images/papel.png",
+                            height: 100,
+                          ),
                         ),
-                        Text(
-                          "Empates: $empates",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                        GestureDetector(
+                          onTap: () => validarJogada("tesoura"),
+                          child: Image.asset(
+                            "assets/images/tesoura.png",
+                            height: 100,
+                          ),
                         ),
                       ],
                     ),
-                  )
-                ],
+                    Padding(
+                      padding: EdgeInsets.only(top: 60),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(top: 5, bottom: 5),
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(width: 3, color: Colors.black26),
+                                color: Colors.black12),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  "Você: $vitorias",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue),
+                                ),
+                                Text(
+                                  "App: $derrotas",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red),
+                                ),
+                                Text(
+                                  "Empates: $empates",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
